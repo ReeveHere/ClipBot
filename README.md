@@ -1,1 +1,2 @@
 # ClipBot
+This is just a bot made for the Clemson Esports Discord server. This bot simply looks through the past X number of days, tallys the number of :fire: react emojis and creates a list of them. This is so the highest rated clips can be easily found and posted yk.

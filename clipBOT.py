@@ -25,10 +25,10 @@ def main():
     @bot.tree.command(name="sync", description="sync")
     async def sync(interaction: discord.Interaction):
         await bot.tree.sync()
-        await interaction.response.send_message(f"SYNC THAT BITCH HOORAH")
+        await interaction.response.send_message("SYNC THAT BITCH HOORAH")
 
     @bot.tree.command(name="gather_clips", description="gathers the most upvoted clips in the set time frame")
-    async def gather_clips(ctx, days: int, clipNum: int):
+    async def gather_clips(ctx, days: int, clipnum: int):
         global upvotedClips
         upvotedClips = []
         after_date = dt.datetime.now()-dt.timedelta(days=days)
@@ -43,8 +43,9 @@ def main():
         # This adds a reaction so that you can actually test the bot lol. I am lonely and have no friends to react sadge
         # await upvotedClips[0][0].add_reaction('🔥')
 
-        embed = discord.Embed(title=f"TOP CLIPS FROM THE PAST {days}", description="Did you even read the title?", color=discord.Color.from_rgb(235,97,6))
-        while i <= clipNum:
+        embed = discord.Embed(title=f"TOP CLIPS FROM THE PAST {days} DAYS", description="Did you even read the title?", color=discord.Color.from_rgb(235,97,6))
+        i=0
+        while i <= clipnum:
             i += 1
             if len(upvotedClips) == 0:
                 break
@@ -59,7 +60,7 @@ def main():
 def getReactions(theMessage):
     for reaction in theMessage.reactions:
         if reaction.emoji == '🔥':
-            upvotedClips.append((theMessage.content, reaction.normal_count))
+            upvotedClips.append((theMessage, reaction.normal_count))
 
     upvotedClips.sort(key=lambda x: x[1])
 
